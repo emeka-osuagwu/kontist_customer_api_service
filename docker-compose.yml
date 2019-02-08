@@ -16,17 +16,6 @@ services:
         environment:
             DEBUG: 'true'
 
-    postgres:
-        image: onjin/alpine-postgres:9.5
-        restart: unless-stopped
-        ports:
-            - "5432:5432"
-        environment:
-            LC_ALL: C.UTF-8
-            POSTGRES_USER: kontist_app
-            POSTGRES_PASSWORD: kontist_app
-            POSTGRES_DB: kontist_app
-
     mysql:
        image: mysql:5.7
        restart: always
