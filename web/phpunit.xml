@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+	bootstrap="vendor/autoload.php" 
+	colors = "true">
+	<testsuites>
+		<testsuite name="Application Test Suite">
+			<directory>./tests/</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+	    <whitelist>
+	        <directory suffix=".php">tests/</directory>
+	    </whitelist>
+	</filter>
+	<php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="JWT_KEY" value="example_key"/>
+        <env name="JWT_ISS" value="http://example.org"/>
+        <env name="JWT_AUD" value="http://example.org"/>
+        <env name="JWT_IAT" value="1356999524"/>
+        <env name="JWT_NBF" value="1357000000"/>
+
+        <!-- <env name="DATABASE_PORT" value="5432"/>
+        <env name="DATABASE_CONNECTION" value="pgsql"/>
+        <env name="DATABASE_DRIVER" value="pgsql"/>
+        <env name="DATABASE" value="kontist_app"/>
+        <env name="DATABASE_HOST" value="postgres"/>
+        <env name="DATABASE_USERNAME" value="kontist_app"/>
+        <env name="DATABASE_PASSWORD" value="kontist_app"/>
+         -->
+    </php>
+</phpunit>

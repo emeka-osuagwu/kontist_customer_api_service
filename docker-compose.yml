@@ -1,0 +1,46 @@
+version: '3'
+services:
+    # Application container
+    php:
+        build: .
+        restart: always
+        container_name: kontist_api_server
+        volumes:
+            - ./:/server/http
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - postgres
+            - mysql
+        environment:
+            DEBUG: 'true'
+
+    postgres:
+        image: onjin/alpine-postgres:9.5
+        restart: unless-stopped
+        ports:
+            - "5432:5432"
+        environment:
+            LC_ALL: C.UTF-8
+            POSTGRES_USER: kontist_app
+            POSTGRES_PASSWORD: kontist_app
+            POSTGRES_DB: kontist_app
+
+    mysql:
+       image: mysql:5.7
+       restart: always
+       environment:
+         MYSQL_DATABASE: 'db'
+         MYSQL_USER: 'user'
+         MYSQL_PASSWORD: 'password'
+         MYSQL_ROOT_PASSWORD: 'password'
+       ports:
+         - '3306:3306'
+       expose:
+         - '3306'
+       volumes:
+         - my-db:/var/lib/mysql
+
+volumes:
+    my-db:

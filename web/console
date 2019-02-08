@@ -1,0 +1,20 @@
+#! /usr/bin/env php
+
+<?php
+
+require 'vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Emeka\Console\Commands\Database\Seeders;
+use Emeka\Console\Commands\Database\RunMigrations;
+use Emeka\Console\Commands\Database\DropMigrations;
+
+$app = new Application('kontist cli tool', 'v1.0.1');
+$capsule = new \Illuminate\Database\Capsule\Manager;
+$database = new Emeka\Database\DatabaseConnection($capsule);
+
+$app->add(new Seeders);
+$app->add(new RunMigrations);
+$app->add(new DropMigrations);
+
+$app->run();

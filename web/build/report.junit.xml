@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Test\FirstTest" file="/Users/creative/Documents/.code/codep/emeka-osuagwu-api-test/web/tests/test.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.009697">
+    <testcase name="testTrueAssetsToTrue" class="Test\FirstTest" classname="Test.FirstTest" file="/Users/creative/Documents/.code/codep/emeka-osuagwu-api-test/web/tests/test.php" line="10" assertions="1" time="0.009697"/>
+  </testsuite>
+</testsuites>
