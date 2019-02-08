@@ -20,7 +20,7 @@ The requirement / instructions for this test can be found in the readme file. Th
 
 #### Get Started:
 - Open [postman](https://www.getpostman.com/apps). or any api client to test the api functionality
-- Import [postman aoi collection](https://www.getpostman.com/collections/b5f7da2dc2d9f65f3cde). or any api client to test the api functionality
+- Import [postman api collection](https://www.getpostman.com/collections/b5f7da2dc2d9f65f3cde). or any api client to test the api functionality
 - Visit http://localhost to see the contents of the web container and develop your application.
 
 #### Console App:
