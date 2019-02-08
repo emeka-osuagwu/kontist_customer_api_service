@@ -11,13 +11,12 @@ The requirement / instructions for this test can be found in the readme file. Th
 #### 4 Step setup:
 - clone repo
 - cd into folder and run ```docker-compose up```
-- run ```docker exec  -it emeka-osuagwu-api-test_php_1 bash``` to get into the dev ennviromennt
+- run ```docker exec  -it kontist_api_server bash``` to get into the dev ennviromennt
 - cd into ```/web``` and run ```composer install``` to pull dependencies
 - run ```php console hf:migrate``` to run database migration
 
 #### Run Test:
   - while in the docker dev ennviromennt run ```./vendor/bin/phpunit``` 
-
 
 #### Get Started:
 - Open [postman](https://www.getpostman.com/apps). or any api client to test the api functionality
