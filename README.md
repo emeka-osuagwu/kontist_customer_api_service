@@ -12,8 +12,6 @@ Create an api service with CRUD opporation for to manage kontist customers
 - Json API response
 - TDD
 
-#### Please Watch before getting started => ​https://www.youtube.com/watch?v=bJ4pyjZUjok
-
 
 #### 4 Step setup:
 - clone repo
