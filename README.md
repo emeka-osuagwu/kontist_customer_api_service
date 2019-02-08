@@ -1,9 +1,16 @@
-## Kontist API Test
+## Kontist Customer API Test
 
 
 ### Summary
-The requirement / instructions for this test can be found in the readme file. This is an additional documentation to give understand.
+Create an api service with CRUD opporation for to manage kontist customers
 
+### Features
+- JWT auth
+- Token based request authentication
+- Database persistence
+- Request Validation
+- Json API response
+- TDD
 
 #### Please Watch before getting started => ​https://www.youtube.com/watch?v=bJ4pyjZUjok
 
@@ -30,7 +37,3 @@ The requirement / instructions for this test can be found in the readme file. Th
 - run ```php console kontist:seed``` to seed database table
 
 API documentation => https://documenter.getpostman.com/view/1035891/RztppnBu
-
-
-
-
