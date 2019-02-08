@@ -15,10 +15,6 @@ ADD . ${APP_DIR}
 # Define current working directory.
 WORKDIR ${APP_DIR}
 
-RUN composer selfupdate && \
-composer require "phpunit/phpunit:~5.3.4" --prefer-source --no-interaction && \
-ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
-
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
