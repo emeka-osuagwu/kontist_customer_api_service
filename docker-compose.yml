@@ -9,9 +9,7 @@ services:
             - ./:/server/http
         ports:
             - "80:80"
-            - "443:443"
         links:
-            - postgres
             - mysql
         environment:
             DEBUG: 'true'
