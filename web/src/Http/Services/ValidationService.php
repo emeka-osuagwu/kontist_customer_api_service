@@ -4,6 +4,15 @@ namespace Emeka\Http\Services;
 
 use Rakit\Validation\Validator;
 
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 class ValidationService
 {
 	protected $validator;
@@ -31,19 +40,38 @@ class ValidationService
 	 */
 	public function createCustomerValidation($data)
 	{
-		$validation = $this->validator->make($data, [
-		    'email' => 'required|email',
-		    'first_name' => 'required|alpha',
-		    'last_name' => 'required|alpha',
-		    'sex' => 'required|alpha',
-		    'phone_number' => 'required|numeric',
-		    'location' => 'required|alpha_spaces',
-		    'image' => 'required|url',
+
+		$violations = $validator_test->validate(json_encode($data), [
+		    new Length(['min' => 10]),
+		    new Assert\Email([
+		    	'message' => 'The email "{{ value }}" is not a valid email.',
+		    	'checkMX' => true,
+		    ]),
+		    new NotBlank(),
 		]);
 
-		$validation->validate();
+		return $violations;
 
-		return $validation;
+		// if (0 !== count($violations)) {
+		//     // there are errors, now you can show them
+		//     foreach ($violations as $violation) {
+		//         echo $violation->getMessage().'<br>';
+		//     }
+		// }
+
+		// $validation = $this->validator->make($data, [
+		//     'email' => 'required|email',
+		//     'first_name' => 'required|alpha',
+		//     'last_name' => 'required|alpha',
+		//     'sex' => 'required|alpha',
+		//     'phone_number' => 'required|numeric',
+		//     'location' => 'required|alpha_spaces',
+		//     'image' => 'required|url',
+		// ]);
+
+		// $validation->validate();
+
+		// return $validation;
 	}
 
 	/**
