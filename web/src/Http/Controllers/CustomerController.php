@@ -95,14 +95,13 @@ class CustomerController
 		}
 
 		// validate request
-		$validation = $this->validationService->createCustomerValidation(input()->all());
-	
+		$validations = $this->validationService->createCustomerValidation(input()->all());
+		
 		// return error is validation fails
-		if ($validation->fails()) {
-		    $errors = $validation->errors();
+		if (count($validations)) {
 		    return response()->httpCode(200)->json([
 		    	"status" => 400,
-		    	"data" => $errors->firstOfAll() 
+		    	"data" => $validations
 		    ]);
 		}
 

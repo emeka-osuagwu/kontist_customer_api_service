@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ValidationService
@@ -40,38 +41,52 @@ class ValidationService
 	 */
 	public function createCustomerValidation($data)
 	{
+		$validator = Validation::createValidator();
 
-		$violations = $validator_test->validate(json_encode($data), [
-		    new Length(['min' => 10]),
-		    new Assert\Email([
-		    	'message' => 'The email "{{ value }}" is not a valid email.',
-		    	'checkMX' => true,
-		    ]),
-		    new NotBlank(),
+		$groups = new Assert\GroupSequence(['Default', 'custom']);
+
+		$constraint = new Assert\Collection([
+		    'email' => [
+		    	new Assert\Email(),
+		    	new Assert\NotBlank(),
+		    ],
+		    'last_name' => [
+		    	new Assert\NotBlank(),
+		    	new Assert\Type(['type' => 'string'])
+		    ],
+		    'first_name' => [
+		    	new Assert\NotBlank(),
+		    	new Assert\Type(['type' => 'string'])
+		    ],
+		    'sex' => [
+		    	new Assert\NotBlank(),
+		    	new Assert\Choice(["female", "male"]),
+		    ],
+		    'image' => [
+		    	new Assert\Url(),
+		    	new Assert\Type(['type' => 'string'])
+		    ],
+		    'phone_number' => [
+		    	new Assert\NotBlank(),
+		    	new Assert\Type(['type' => 'numeric'])
+		    ],
+		    'location' => [
+		    	new Assert\NotBlank(),
+		    	new Assert\Type(['type' => 'string'])
+		    ],
 		]);
 
-		return $violations;
+		$violations = $validator->validate($data, $constraint, $groups);
 
-		// if (0 !== count($violations)) {
-		//     // there are errors, now you can show them
-		//     foreach ($violations as $violation) {
-		//         echo $violation->getMessage().'<br>';
-		//     }
-		// }
+		$error_bags = [];
 
-		// $validation = $this->validator->make($data, [
-		//     'email' => 'required|email',
-		//     'first_name' => 'required|alpha',
-		//     'last_name' => 'required|alpha',
-		//     'sex' => 'required|alpha',
-		//     'phone_number' => 'required|numeric',
-		//     'location' => 'required|alpha_spaces',
-		//     'image' => 'required|url',
-		// ]);
+		if (0 !== count($violations)) {
+		    foreach ($violations as $violation) {
+		    	array_push($error_bags, [$violation->getpropertyPath() => $violation->getMessage()]);
+		    }
+		}
 
-		// $validation->validate();
-
-		// return $validation;
+		return $error_bags;
 	}
 
 	/**
