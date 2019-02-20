@@ -12,7 +12,9 @@
         "phpspec/phpspec": "^5.1",
         "guzzlehttp/guzzle": "~6.0",
         "fzaninotto/faker": "^1.8",
-        "php-di/php-di": "^6.0"
+        "php-di/php-di": "^6.0",
+        "symfony/validator": "^4.2",
+        "symfony/routing": "^4.2"
     },
 	"autoload": {
 		"psr-4": {
