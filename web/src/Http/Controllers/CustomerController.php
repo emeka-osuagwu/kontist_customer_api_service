@@ -116,7 +116,8 @@ class CustomerController
 			]);
 		}	
 
-		return response()->httpCode(200)->json([
+
+e(200)->json([
 			"data" => $this->customerService->createRecipe(input()->all()),
 			"status" => 200
 		]);
